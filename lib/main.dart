@@ -1,5 +1,5 @@
 import 'package:binaryoze/dashboard.dart';
-import 'package:binaryoze/splashscreen.dart';
+
 import 'package:flutter/material.dart';
 
 void main() {

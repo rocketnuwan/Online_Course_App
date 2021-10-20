@@ -1,9 +1,9 @@
+import 'package:binaryoze/comment_box.dart';
 import 'package:binaryoze/courses_model.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:percent_indicator/percent_indicator.dart';
-
 import 'category_model.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -48,18 +48,24 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
           Padding(
             padding:
-                const EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
+                const EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text('COURSES',
                     style:
                         TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                Text('See All',
-                    style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.blue)),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => TestMe()));
+                  },
+                  child: Text('See All',
+                      style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.blue)),
+                ),
               ],
             ),
           ),
@@ -72,17 +78,73 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   itemCount: courseslist.length,
                   physics: BouncingScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2, childAspectRatio: 1 / 1.2),
+                      crossAxisCount: 1, childAspectRatio: 3 / 1.3),
                   itemBuilder: (context, index) {
-                    return Card(
-                      color: Color(0xffFFFFFF),
-                      margin: EdgeInsets.all(8),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10))),
-                      elevation: 3,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [Text(courseslist[index].name)],
+                    return InkWell(
+                      onTap: () {
+                        setState(() {});
+                      },
+                      child: Card(
+                        color: Color(0xffFFFFFF),
+                        margin: EdgeInsets.all(8),
+                        shape: RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
+                        elevation: 3,
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Container(
+                                  width: size.width / 2,
+                                  child: Image.asset(
+                                    'assets/${courseslist[index].image}',
+                                    fit: BoxFit.cover,
+                                  )),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          courseslist[index].name,
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.bold,
+                                              letterSpacing: 1),
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            Icon(
+                                              Icons.star,
+                                              color: Color(0xFFFFC960),
+                                            ),
+                                            Text('4.5')
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                    Icon(
+                                      Icons.favorite,
+                                      color: Colors.red,
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
                       ),
                     );
                   }),

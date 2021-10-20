@@ -6,11 +6,13 @@ class CategoryModel {
   int id;
   String name;
   String image;
+  bool isCliced;
 
   CategoryModel({
     required this.id,
     required this.name,
     required this.image,
+    this.isCliced = false,
   });
 }
 

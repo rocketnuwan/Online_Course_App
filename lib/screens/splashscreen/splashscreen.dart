@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:binaryoze/home.dart';
+
+import 'package:binaryoze/screens/home/home.dart';
 import 'package:flutter/material.dart';
 
 class Splashscreen extends StatefulWidget {
